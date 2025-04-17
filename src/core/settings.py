@@ -87,13 +87,15 @@ WSGI_APPLICATION = "core.wsgi.application"
 #     }
 # }
 
-db_name = os.getenv("trackitdb")
+db_name = os.getenv("DB_NAME")
 db_password = os.getenv("DB_PASSWORD")
 db_host = os.getenv("DB_HOST")
 db_user = os.getenv("DB_USER")
 db_port = os.getenv("DB_PORT")
 
+
 db_uri = f"postgres://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
+print(db_uri)
 
 DATABASES = {"default": dj_database_url.parse(db_uri, conn_max_age=600)}
 
