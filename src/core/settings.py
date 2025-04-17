@@ -93,6 +93,8 @@ db_host = os.getenv("DB_HOST")
 db_user = os.getenv("DB_USER")
 db_port = os.getenv("DB_PORT")
 
+print(db_name, db_port)
+
 
 db_uri = f"postgres://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
 
