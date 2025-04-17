@@ -87,11 +87,11 @@ WSGI_APPLICATION = "core.wsgi.application"
 #     }
 # }
 
-db_name = os.getenv("DB_NAME")
-db_password = os.getenv("DB_PASSWORD")
-db_host = os.getenv("DB_HOST")
-db_user = os.getenv("DB_USER")
-db_port = os.getenv("DB_PORT")
+db_name = config("DB_NAME")
+db_password = config("DB_PASSWORD")
+db_host = config("DB_HOST")
+db_user = config("DB_USER")
+db_port = config("DB_PORT")
 
 print(db_name, db_port)
 
