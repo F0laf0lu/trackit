@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "users",
     "transactions",
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -93,8 +94,6 @@ db_host = config("DB_HOST")
 db_user = config("DB_USER")
 db_port = config("DB_PORT")
 
-print(db_name, db_port)
-
 
 db_uri = f"postgres://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
 
@@ -136,6 +135,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = "static/"
+
+AWS_STORAGE_BUCKET_NAME=config('AWS_STORAGE_BUCKET_NAME')
+AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_ACCESS_KEY")
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.s3.S3Storage",
+        "OPTIONS": {},
+    },
+    "staticfiles": {
+        "BACKEND": "storages.backends.s3.S3Storage",
+    },
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
